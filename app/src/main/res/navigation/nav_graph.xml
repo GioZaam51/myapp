@@ -6,18 +6,37 @@
 
     <fragment
         android:id="@+id/login_fragment"
-        android:name="com.example.myapplication.login_fragment"
+        android:name="com.example.myapplication.Login_fragment"
         android:label="login_fragment" >
         <action
             android:id="@+id/action_login_fragment_to_register_fragment"
             app:destination="@id/register_fragment" />
+        <action
+            android:id="@+id/action_login_fragment_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
     </fragment>
     <fragment
         android:id="@+id/register_fragment"
-        android:name="com.example.myapplication.register_fragment"
+        android:name="com.example.myapplication.Register_fragment"
         android:label="register_fragment" >
         <action
             android:id="@+id/action_register_fragment_to_login_fragment"
             app:destination="@id/login_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="com.example.myapplication.TaskListFragment"
+        android:label="TaskListFragment" >
+        <action
+            android:id="@+id/action_taskListFragment_to_tareaFragment"
+            app:destination="@id/tareaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tareaFragment"
+        android:name="com.example.myapplication.TareaFragment"
+        android:label="TareaFragment" >
+        <action
+            android:id="@+id/action_tareaFragment_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
     </fragment>
 </navigation>

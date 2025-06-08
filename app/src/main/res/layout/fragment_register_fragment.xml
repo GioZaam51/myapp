@@ -60,9 +60,6 @@
             android:textSize="16sp" />
     </LinearLayout>
 
-
-    <!-- Botón Ingresar -->
-
     <!-- Enlaces inferiores -->
     <EditText
         android:id="@+id/etNombre"
