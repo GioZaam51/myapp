@@ -5,7 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.example.myapplication.model.Task
+import com.google.firebase.database.FirebaseDatabase
+
 
 class TareaFragment : Fragment() {
 
@@ -16,26 +22,69 @@ class TareaFragment : Fragment() {
         // Inflate the layout
         val view = inflater.inflate(R.layout.fragment_tarea, container, false)
 
+        val db = FirebaseDatabase.getInstance().getReference("test")
+        db.setValue("¡Hola desde Kotlin!")
+        // 🔽 Recibir argumentos desde el Bundle
+        val args = arguments
+        val id = args?.getString("id") ?: ""
+        val name = args?.getString("name") ?: ""
+        val description = args?.getString("description") ?: ""
+        val date = args?.getString("date") ?: ""
+
+        // Aquí puedes usar las variables recibidas, por ejemplo, para llenar campos de texto
+        val nameEditText = view.findViewById<EditText>(R.id.etTaskName)
+        val descriptionEditText = view.findViewById<EditText>(R.id.etTaskDescription)
+        val dateEditText = view.findViewById<EditText>(R.id.etTaskDate)
+
+        nameEditText.setText(name)
+        descriptionEditText.setText(description)
+        dateEditText.setText(date)
+
         // Manejar clic del botón backIcon
         val backIcon = view.findViewById<View>(R.id.backIcon)
         backIcon.setOnClickListener {
             findNavController().navigate(R.id.action_tareaFragment_to_taskListFragment)
         }
 
-        return view
-    }
+        val addButton = view.findViewById<Button>(R.id.btnAddTask)
 
-    companion object {
-        private const val ARG_PARAM1 = "param1"
-        private const val ARG_PARAM2 = "param2"
+        addButton.setOnClickListener {
+            val taskName = nameEditText.text.toString().trim()
+            val taskDesc = descriptionEditText.text.toString().trim()
+            val taskDate = dateEditText.text.toString().trim()
 
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TareaFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+            if (taskName.isEmpty() || taskDesc.isEmpty() || taskDate.isEmpty()) {
+                Toast.makeText(requireContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val dbRef = com.google.firebase.database.FirebaseDatabase.getInstance().getReference("tasks")
+
+            if (id.isEmpty()) {
+                // Crear nueva tarea
+                val taskId = dbRef.push().key!!
+                val newTask = Task(taskId, taskName, taskDesc, taskDate)
+
+                dbRef.child(taskId).setValue(newTask).addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Tarea agregada", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_tareaFragment_to_taskListFragment)
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), "Error al guardar", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                // Actualizar tarea existente
+                val updatedTask = Task(id, taskName, taskDesc, taskDate)
+
+                dbRef.child(id).setValue(updatedTask).addOnSuccessListener {
+                    Toast.makeText(requireContext(), "Tarea actualizada", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_tareaFragment_to_taskListFragment)
+                }.addOnFailureListener {
+                    Toast.makeText(requireContext(), "Error al actualizar", Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+
+        return view
     }
 }

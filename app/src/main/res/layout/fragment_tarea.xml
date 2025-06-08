@@ -112,12 +112,13 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:background="#C4D6DE"
-            android:clickable="true"
-            android:focusable="false"
             android:hint="Ingrese fecha"
             android:inputType="date"
             android:padding="12dp"
-            tools:ignore="HardcodedText,KeyboardInaccessibleWidget,TextContrastCheck" />
+            android:focusable="true"
+            android:clickable="true" />
+
+
         <Button
             android:id="@+id/btnAddTask" android:layout_width="match_parent"
             android:layout_height="wrap_content"
