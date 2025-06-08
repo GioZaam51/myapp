@@ -26,8 +26,8 @@
             android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Botón con ícono"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@android:color/white" />
+            android:src="@drawable/ic_volver"
+            app:tint="@color/black" />
 
         <ImageView
             android:id="@+id/icono"
@@ -35,7 +35,7 @@
             android:layout_height="32dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="Icono"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@drawable/ic_tarea" />
 
         <!-- Texto Bienvenido -->
 
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="¡Bienvenido!"
-            android:textColor="@android:color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -56,7 +56,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="registrate para continuar"
-            android:textColor="@android:color/white"
+            android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
 
@@ -111,7 +111,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#FFC400"
-        android:text="Ingresar"
+        android:text="Registrar"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

@@ -21,11 +21,11 @@
         <!-- Icono -->
         <ImageView
             android:id="@+id/icono"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="Icono"
-            android:src="@drawable/ic_launcher_foreground" />
+            android:src="@drawable/ic_tarea" />
 
         <!-- Texto Bienvenido -->
         <TextView
