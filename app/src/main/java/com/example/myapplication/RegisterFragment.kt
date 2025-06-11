@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,13 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import com.example.myapplication.databinding.FragmentRegisterFragmentBinding
+import com.example.myapplication.databinding.FragmentRegisterBinding
 import com.example.myapplication.interfaces.FragmentCommunicator
 import com.example.myapplication.viewmodel.RegisterViewModel
 
-class Register_fragment : Fragment() {
+class RegisterFragment : Fragment() {
 
-    private var _binding: FragmentRegisterFragmentBinding? = null
+    private var _binding: FragmentRegisterBinding? = null
     private val binding get() = _binding!!
 
     private val registerViewModel: RegisterViewModel by viewModels()
@@ -39,7 +40,7 @@ class Register_fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRegisterFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
         setupView()
         observeViewModel()
         return binding.root
@@ -47,7 +48,7 @@ class Register_fragment : Fragment() {
 
     private fun setupView() {
         binding.btnIcono.setOnClickListener {
-            findNavController().navigate(R.id.action_register_fragment_to_login_fragment)
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
         }
 
         binding.btnIngresar.setOnClickListener {
@@ -76,7 +77,7 @@ class Register_fragment : Fragment() {
         registerViewModel.registrationSuccess.observe(viewLifecycleOwner, Observer { success ->
             if (success) {
                 Toast.makeText(requireContext(), "Registro exitoso", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_register_fragment_to_login_fragment)
+                findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
             }
         })
 

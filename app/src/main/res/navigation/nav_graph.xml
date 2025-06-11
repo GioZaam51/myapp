@@ -1,42 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/login_fragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/login_fragment"
-        android:name="com.example.myapplication.Login_fragment"
-        android:label="login_fragment" >
+        android:id="@+id/registerFragment"
+        android:name="com.example.myapplication.RegisterFragment"
+        android:label="Register">
         <action
-            android:id="@+id/action_login_fragment_to_register_fragment"
-            app:destination="@id/register_fragment" />
-        <action
-            android:id="@+id/action_login_fragment_to_taskListFragment"
-            app:destination="@id/taskListFragment" />
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
+
     <fragment
-        android:id="@+id/register_fragment"
-        android:name="com.example.myapplication.Register_fragment"
-        android:label="register_fragment" >
+        android:id="@+id/loginFragment"
+        android:name="com.example.myapplication.LoginFragment"
+        android:label="Login">
         <action
-            android:id="@+id/action_register_fragment_to_login_fragment"
-            app:destination="@id/login_fragment" />
+            android:id="@+id/action_loginFragment_to_taskListFragment"
+            app:destination="@id/taskListFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/taskListFragment"
         android:name="com.example.myapplication.TaskListFragment"
-        android:label="TaskListFragment" >
+        android:label="Task List">
         <action
             android:id="@+id/action_taskListFragment_to_tareaFragment"
             app:destination="@id/tareaFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/tareaFragment"
         android:name="com.example.myapplication.TareaFragment"
-        android:label="TareaFragment" >
+        android:label="Task Detail">
         <action
             android:id="@+id/action_tareaFragment_to_taskListFragment"
             app:destination="@id/taskListFragment" />
     </fragment>
+
 </navigation>

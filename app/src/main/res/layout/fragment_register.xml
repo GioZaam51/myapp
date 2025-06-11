@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,34 +18,59 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <!-- Icono -->
+        <ImageButton
+            android:id="@+id/btnIcono"
+            android:layout_width="53dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Botón con ícono"
+            android:src="@drawable/ic_volver"
+            app:tint="@color/black" />
+
         <ImageView
             android:id="@+id/icono"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="Icono"
             android:src="@drawable/ic_tarea" />
 
-        <!-- Texto Bienvenido -->
+
+        <!-- Subtítulo -->
+
         <TextView
             android:id="@+id/tvBienvenido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="¡Bienvenido!"
-            android:textColor="@android:color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <!-- Subtítulo -->
         <TextView
             android:id="@+id/tvSubtitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Inicia sesión para continuar"
-            android:textColor="@android:color/white"
+            android:text="registrate para continuar"
+            android:textColor="@color/black"
             android:textSize="16sp" />
     </LinearLayout>
+
+    <!-- Enlaces inferiores -->
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="Nombre:"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topSection" />
 
     <EditText
         android:id="@+id/etCorreo"
@@ -60,7 +84,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topSection" />
+        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
 
     <EditText
         android:id="@+id/etContrasena"
@@ -72,10 +96,10 @@
         android:hint="Contraseña:"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etCorreo" />
 
-    <!-- Botón Ingresar -->
     <Button
         android:id="@+id/btnIngresar"
         android:layout_width="0dp"
@@ -84,13 +108,13 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#FFC400"
-        android:text="Ingresar"
+        android:text="Registrar"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etContrasena" />
 
-    <!-- Enlaces inferiores -->
     <LinearLayout
         android:id="@+id/linkContainer"
         android:layout_width="0dp"
@@ -103,27 +127,5 @@
         app:layout_constraintEnd_toEndOf="parent">
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvRegistrar"
-        android:layout_width="78dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Registrarse"
-        android:textColor="#FFC400"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvRestablecer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Restablecer contraseña"
-        android:textColor="#FFC400"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

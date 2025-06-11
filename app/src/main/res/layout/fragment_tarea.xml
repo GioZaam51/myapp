@@ -123,12 +123,26 @@
             android:id="@+id/btnAddTask" android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Agregar"
-            android:backgroundTint="#66CCFF"
+            android:backgroundTint="#FFC400"
             android:textColor="@android:color/white"
             android:textAllCaps="false"
             android:paddingVertical="12dp"
             android:textSize="18sp"
             app:cornerRadius="8dp" />
     </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loaderAnimation"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:lottie_rawRes="@raw/loader_cat"
+        app:lottie_loop="true"
+        app:lottie_autoPlay="false"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
