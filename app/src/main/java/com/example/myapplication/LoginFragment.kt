@@ -48,10 +48,10 @@ class LoginFragment : Fragment() {
             binding.btnIngresar.isEnabled = !isLoading
             if (isLoading) {
                 communicator?.showLoader()
-                binding.loginContainer.visibility = View.GONE  // Oculta formulario
+                binding.loginContainer.visibility = View.GONE
             } else {
                 communicator?.hideLoader()
-                binding.loginContainer.visibility = View.VISIBLE // Muestra formulario
+                binding.loginContainer.visibility = View.VISIBLE
             }
         }
 
@@ -61,7 +61,7 @@ class LoginFragment : Fragment() {
 
         viewModel.loginSuccess.observe(viewLifecycleOwner) { success ->
             if (success) {
-                findNavController().navigate(R.id.action_loginFragment_to_taskListFragment)
+                (activity as? MainActivity)?.iniciarSesion()
             }
         }
     }

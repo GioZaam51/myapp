@@ -1,6 +1,5 @@
 package com.example.myapplication
 
-
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,7 +20,6 @@ class RegisterFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val registerViewModel: RegisterViewModel by viewModels()
-
     private var fragmentCommunicator: FragmentCommunicator? = null
 
     override fun onAttach(context: Context) {
@@ -34,16 +32,6 @@ class RegisterFragment : Fragment() {
     override fun onDetach() {
         super.onDetach()
         fragmentCommunicator = null
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        setupView()
-        observeViewModel()
-        return binding.root
     }
 
     private fun setupView() {
@@ -59,6 +47,7 @@ class RegisterFragment : Fragment() {
             if (nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
                 Toast.makeText(requireContext(), "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show()
             } else {
+                fragmentCommunicator?.showLoader()
                 registerViewModel.registerUser(correo, contrasena)
             }
         }
@@ -66,12 +55,12 @@ class RegisterFragment : Fragment() {
 
     private fun observeViewModel() {
         registerViewModel.showLoader.observe(viewLifecycleOwner, Observer { isLoading ->
+            binding.btnIngresar.isEnabled = !isLoading
             if (isLoading) {
                 fragmentCommunicator?.showLoader()
             } else {
                 fragmentCommunicator?.hideLoader()
             }
-            binding.btnIngresar.isEnabled = !isLoading
         })
 
         registerViewModel.registrationSuccess.observe(viewLifecycleOwner, Observer { success ->
@@ -85,6 +74,18 @@ class RegisterFragment : Fragment() {
             Toast.makeText(requireContext(), error, Toast.LENGTH_SHORT).show()
         })
     }
+
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        setupView()
+        observeViewModel()
+        return binding.root
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

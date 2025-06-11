@@ -63,6 +63,13 @@ class TaskListFragment : Fragment() {
         binding.addFab.setOnClickListener {
             findNavController().navigate(R.id.action_taskListFragment_to_tareaFragment)
         }
+
+        binding.menuIcon.setOnClickListener {
+            (activity as? MainActivity)?.toggleDrawer()
+        }
+        binding.addFab.setOnClickListener {
+            findNavController().navigate(R.id.action_taskListFragment_to_tareaFragment)
+        }
     }
 
     private fun loadTasksFromFirebase() {

@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_taskListFragment_to_tareaFragment"
             app:destination="@id/tareaFragment" />
+        <action
+            android:id="@+id/action_taskListFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
 
     <fragment
