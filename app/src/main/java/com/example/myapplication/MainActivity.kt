@@ -5,11 +5,14 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
+import com.google.firebase.crashlytics.FirebaseCrashlytics
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +40,11 @@ class MainActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                     true
                 }
+                R.id.nav_help -> {
+                    abrirAyuda()
+                    drawerLayout.closeDrawers()
+                    true
+                }
                 else -> false
             }
         }
@@ -47,26 +55,32 @@ class MainActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             val navController = findNavController(R.id.nav_host_fragment)
-
             navController.navigate(R.id.action_taskListFragment_to_loginFragment)
-
             hideLoader()
         }, 1500)
     }
 
+    private fun abrirAyuda() {
+        try {
+            val ayuda: String? = null
+            val resultado = ayuda!!.length
+
+        } catch (e: Exception) {
+
+            FirebaseCrashlytics.getInstance().recordException(e)
+            Toast.makeText(this, "Ocurrió un error al abrir la ayuda", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     fun iniciarSesion() {
         showLoader()
 
         Handler(Looper.getMainLooper()).postDelayed({
             val navController = findNavController(R.id.nav_host_fragment)
-
             navController.navigate(R.id.action_loginFragment_to_taskListFragment)
-
             hideLoader()
         }, 1500)
     }
-
 
     fun showLoader() {
         loaderContainer.visibility = View.VISIBLE

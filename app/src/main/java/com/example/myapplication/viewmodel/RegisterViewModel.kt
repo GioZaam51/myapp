@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.example.myapplication.firebase.FirebaseErrorHandler
 
 class RegisterViewModel : ViewModel() {
 
@@ -20,13 +21,16 @@ class RegisterViewModel : ViewModel() {
 
     fun registerUser(email: String, password: String) {
         _showLoader.value = true
+
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 _showLoader.value = false
                 if (task.isSuccessful) {
                     _registrationSuccess.value = true
                 } else {
-                    _errorMessage.value = task.exception?.message ?: "Error desconocido"
+                    val exception = task.exception
+                    val errorMsg = FirebaseErrorHandler.getAuthErrorMessage(exception ?: Exception("Error desconocido"))
+                    _errorMessage.value = errorMsg
                 }
             }
     }
